@@ -3,11 +3,14 @@ import  { Feather } from "@expo/vector-icons"
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize'
 import { getStatusBarHeight } from 'react-native-iphone-x-helper'
 import { AnyStyledComponent } from 'styled-components'
+import { getBottomSpace } from 'react-native-iphone-x-helper';
+
 
 
 export const Container = styled.View`
   flex: 1;
   background-color: ${({theme})=> theme.colors.background} ;
+ 
 `
 
 export const Header  = styled.View`
@@ -81,6 +84,17 @@ export const Title = styled.Text`
   font-size: ${RFValue(18)}px;
   font-family:  ${({theme})=> theme.fonts.regular};
   margin-bottom: 16px;
+
+
+`
+
+export const TransactionsList = styled.FlatList.attrs({
+  showsVerticalScrollIndicator:false,
+  contentContainerStyle:{
+    paddingBotton:getBottomSpace() 
+  }
+})`
+
 
 
 `

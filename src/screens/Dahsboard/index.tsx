@@ -1,6 +1,6 @@
 import React from 'react';
 import { HighlightCard } from '../../components/HighlightCard';
-import { TransactionCard } from '../../components/TransactionCard';
+import { TransactionCard, TransactionCardProps } from '../../components/TransactionCard';
 import {
   Container,
   Header,
@@ -13,11 +13,52 @@ import {
   Icon,
   HighlightCards,
   Transactions,
-  Title
+  Title,
+  TransactionsList
 
 } from './styles'
 
+
+interface FlatListProps{
+  item: TransactionCardProps
+}
+
 export function Dashboard() {
+  const data =[
+    {
+      id:'1',
+    type:'positive',
+    title:'Desenvolvimento de site',
+    amount:'R$ 12.000,00',
+    category:{
+      name:'vendas',
+      icon:'dollar-sign'
+    },
+    date:'20/09/2022'
+  },
+  {
+    id:'2',
+    type:'negative',
+    title:'Hamburgueria',
+    amount:'R$ 59,00',
+    category:{
+      name:'Alimentação',
+      icon:'coffee'
+    },
+    date:'20/09/2022'
+  },
+  {
+    id:'3',
+    type:'negative',
+    title:'Aluguel',
+    amount:'R$ 1.200,00',
+    category:{
+      name:'Casa',
+      icon:'shopping-bag'
+    },
+    date:'20/09/2022'
+  }
+]
   return (
     <Container>
 
@@ -40,9 +81,16 @@ export function Dashboard() {
         <HighlightCard type='total' title='Total' amount='16.141,00' lastTransaction='01 á 16 de abril' />
       </HighlightCards>
 
+     
       <Transactions>
         <Title>Listagem</Title>
-        <TransactionCard/>
+        <TransactionsList 
+          data={data}
+          renderItem={({item}:FlatListProps)=> <TransactionCard data={item}/>}
+
+        />
+        
+        
       </Transactions>
 
     </Container>
